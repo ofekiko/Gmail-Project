@@ -1,0 +1,3 @@
+/tmp/docker-desktop-root/run/desktop/mnt/host/c/Users/USER/Desktop/שנה ב/מתקדם/Gmail-Project/build/CMakeFiles/Gmail.dir
+/tmp/docker-desktop-root/run/desktop/mnt/host/c/Users/USER/Desktop/שנה ב/מתקדם/Gmail-Project/build/CMakeFiles/edit_cache.dir
+/tmp/docker-desktop-root/run/desktop/mnt/host/c/Users/USER/Desktop/שנה ב/מתקדם/Gmail-Project/build/CMakeFiles/rebuild_cache.dir
