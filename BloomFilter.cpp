@@ -8,7 +8,7 @@ using namespace std;
 
 class BloomFilter{
     private:
-        int sizeOfArr;
+        const int sizeOfArr;
         int* ptrToArr;
         vector <int> hashFunctions;
 
@@ -24,7 +24,17 @@ class BloomFilter{
         
             return static_cast<int>(hashValue % sizeOfArr);
         }
-        bool falsePositive(const string& url, istream& in)
+
+        set <int> hashloop(string& URL) {
+            set<int> hashResultsIndex;
+            for (int i = 0; i < this.hashFunctions.size()) {
+                int index = repeatHashOnString(this.hashFunctions[i], URL);
+                hashResultsIndex.insert(index);
+            }
+            return hashResultsIndex;
+        }
+  
+          bool falsePositive(const string& url, istream& in)
         {
             string line;
             in.clear();           
@@ -39,6 +49,7 @@ class BloomFilter{
                 cout << "False\n";
             }
         }
+
     public:
         BloomFilter (string& input){
             stringstream ss(input);
@@ -53,9 +64,16 @@ class BloomFilter{
             int arrayOfFilter[sizeOfArr] = {0};
             ptrToArr = arrayOfFilter;
         }
-        void addURL (string& URL){}
 
-        void checkURL (string& URL){
+        void addURL (string& URL){
+            set<int> hashResultsIndex = hashloop(URL);
+            for (int index : hashResultsIndex) {
+                this.ptrToArr[index] = 1;
+            }
+            
+        }
+  
+          void checkURL (string& URL){
             int array[sizeOfArr] = hashLoop(url);
             for(int i = 0; i < sizeOfArr; i++){
                 int bitIndex = array[i];
@@ -68,4 +86,5 @@ class BloomFilter{
                 falsePositive(url, Blacklist);
             }
         }
+
 };
