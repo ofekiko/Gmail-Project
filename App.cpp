@@ -1,8 +1,10 @@
 #include "App.h"
+#include <fstream>
 
 void App::run() {
     string input;
     vector<int> numbers;
+    std::ifstream in("Blacklist.txt");   
 
     // להעביר למתן את הוקטור של המספרים
     // check if the input is by the correct format
