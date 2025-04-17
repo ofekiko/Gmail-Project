@@ -2,6 +2,8 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include FileFunction.h
+
 
 using namespace std;
 
@@ -24,7 +26,7 @@ class BloomFilter{
             return static_cast<int>(hashValue % sizeOfArr);
         }
 
-        set <int> hashloop(string& URL) {
+        set <int> hashLoop(string& URL) {
             set<int> hashResultsIndex;
             for (int i = 0; i < this.hashFunctions.size()) {
                 int index = repeatHashOnString(this.hashFunctions[i], URL);
@@ -49,11 +51,11 @@ class BloomFilter{
         }
 
         void addURL (string& URL){
-            set<int> hashResultsIndex = hashloop(URL);
+            set<int> hashResultsIndex = hashLoop(URL);
             for (int index : hashResultsIndex) {
                 this.ptrToArr[index] = 1;
             }
-            
+            WriteURLtoFile(file, URL);
         }
 
         void checkURL (string& URL){}
