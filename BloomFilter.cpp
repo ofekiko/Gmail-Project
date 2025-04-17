@@ -2,8 +2,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
-#include FileFunction.h
-
+#include <FileFunction.h>
 
 using namespace std;
 
@@ -34,6 +33,22 @@ class BloomFilter{
             }
             return hashResultsIndex;
         }
+  
+          bool falsePositive(const string& url, istream& in)
+        {
+            string line;
+            in.clear();           
+            in.seekg(0);           
+            while (getline(in, line))
+            {
+                if (url == line)  
+                {
+                    cout << "True\n";
+                    break;
+                }
+                cout << "False\n";
+            }
+        }
 
     public:
         BloomFilter (string& input){
@@ -57,6 +72,19 @@ class BloomFilter{
             }
             WriteURLtoFile(file, URL);
         }
+  
+          void checkURL (string& URL){
+            int array[sizeOfArr] = hashLoop(url);
+            for(int i = 0; i < sizeOfArr; i++){
+                int bitIndex = array[i];
+                if(ptrToArr[bitIndex] == 0){
+                    cout << "False";
+                    break;
+                }
+            }
+            else{
+                falsePositive(url, Blacklist);
+            }
+        }
 
-        void checkURL (string& URL){}
 };
