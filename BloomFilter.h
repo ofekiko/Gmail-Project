@@ -5,6 +5,7 @@
 
 using namespace std;
 int repeatHashOnString(int n, const string& input);
+BloomFilter (string& input);
 set <int> hashLoop(string& URL);
 void addURL (string& URL);
 void checkURL (string& URL);
