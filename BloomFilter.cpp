@@ -80,7 +80,7 @@ class BloomFilter{
                 if(ptrToArr[bitIndex] == 0){
                     cout << "false";
                     break;
-                }
+                } 
             }
             else{
                 falsePositive(url, Blacklist);
