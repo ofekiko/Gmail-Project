@@ -6,6 +6,8 @@
 #include "checkFunctionCommand.h"
 #include "ConsoleMenu.h"
 #include "App.h"
+#include "BloomFilter.h"
+#include "BloomFilter.cpp"
 
 using namespace std;
 
@@ -15,13 +17,9 @@ int main(){
     commands[1] = AddFunctionCommand;
     ICommand* CheckFunctionCommand = new checkFunctionCommand();
     commands[2] = CheckFunctionCommand;
-
     ConsoleMenu *consoleMenu = new ConsoleMenu();
     App *app = new App(consoleMenu,commands);
 
     app->run();
 
-// TODO: add code to allow graceful exit
-// delete displayArticles;
-// delete addArticle;
 }

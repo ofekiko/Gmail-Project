@@ -82,9 +82,9 @@ class BloomFilter{
                     break;
                 }
             }
-            else{
-                falsePositive(url, Blacklist);
-            }
+            
+            falsePositive(url, Blacklist);
+            
         }
 
 };

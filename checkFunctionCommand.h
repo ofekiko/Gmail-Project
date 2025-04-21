@@ -9,8 +9,7 @@ using namespace std;
 
 class checkFunctionCommand : public ICommand{
 public:
-    void execute() override{check();}
-    void check() {}
+    void execute(BloomFilter BF, string& url);
 };
 
 #endif
