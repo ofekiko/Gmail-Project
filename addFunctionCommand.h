@@ -3,14 +3,13 @@
 
 #include <iostream>
 #include "ICommand.h"
-
-
+#include "BloomFilter.h"
+#include "BloomFilter.cpp"
 using namespace std;
 
-class addFunctionCommand : public ICommand{
+class addFunctionCommand: public ICommand{
 public:
-    void execute() override {add();}
-    void add() {}
+    void execute(BloomFilter BF, string& url){};
 };
 
 #endif

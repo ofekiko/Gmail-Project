@@ -4,17 +4,17 @@
 void App::run() {
     string input;
     vector<int> numbers;
-    std::ifstream in("Blacklist.txt");   
+    ifstream in("Blacklist.txt");   
 
-    // להעביר למתן את הוקטור של המספרים
     // check if the input is by the correct format
     while (true) {
         getline(cin, input);
         stringstream ss(input);
+        BloomFilter BF(input);
+        addFunctionCommand.setBF(BF);
         string token;
         int number;
         bool isValid = true;
-
         numbers.clear();
         // check if the input is positive and in the correct format
         while (ss >> token) {
@@ -31,8 +31,9 @@ void App::run() {
             break;
         }
     }
-
     cout << "Entered only valid numbers :)" << endl;
+    string urlInput;
+    cin >> urlInput;
     while (true) {
         int task = menu->nextCommand();
         try {
