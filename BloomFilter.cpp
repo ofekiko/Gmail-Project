@@ -2,13 +2,15 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <set>
 #include "FileFunction.h"
+#include "Blacklist.txt"
 
 using namespace std;
 
 class BloomFilter{
     private:
-        const int sizeOfArr;
+        int sizeOfArr;
         int* ptrToArr;
         vector <int> hashFunctions;
 
@@ -25,30 +27,34 @@ class BloomFilter{
             return static_cast<int>(hashValue % sizeOfArr);
         }
 
-        set <int> hashLoop(string& URL) {
-            set<int> hashResultsIndex;
-            for (int i = 0; i < this.hashFunctions.size()) {
-                int index = repeatHashOnString(this.hashFunctions[i], URL);
-                hashResultsIndex.insert(index);
+        int* hashLoop(string& URL) {
+            int hashResultsIndex[sizeOfArr] = {0};
+            
+            for (int i = 0; i < hashFunctions.size(); i++) 
+            {
+                int index = repeatHashOnString(hashFunctions[i], URL);
+                hashResultsIndex[i] = index;
             }
             return hashResultsIndex;
         }
   
-        void falsePositive(const string& url, istream& in)
-        {
-            string line;
-            in.clear();           
-            in.seekg(0);           
-            while (getline(in, line))
-            {
-                if (url == line)  
-                {
-                    cout << "true\n";
-                    break;
-                }
-                cout << "false\n";
-            }
-        }
+        // void falsePositive(const string& url)
+        // {
+        //     string blacklistFile = "Blacklist.txt";
+        //     ifstream inputFile(blacklistFile);
+        //     string line;
+        //     blacklistFile.clear();           
+        //     blacklistFile.seekg(0);           
+        //     while (getline(blacklistFile, line))
+        //     {
+        //         if (url == line)  
+        //         {
+        //             cout << "true\n";
+        //             break;
+        //         }
+        //         cout << "false\n";
+        //     }
+        // }
 
     public:
         BloomFilter (string& input){
@@ -66,24 +72,24 @@ class BloomFilter{
         }
 
         void addURL (string& URL){
-            set<int> hashResultsIndex = hashLoop(URL);
-            for (int index : hashResultsIndex) {
-                this.ptrToArr[index] = 1;
+            int* hashResultsIndex = hashLoop(URL);
+            for (int i = 0; i < sizeOfArr; i++) {
+                ptrToArr[hashResultsIndex[i]] = 1;
             }
-            WriteURLtoFile(Blacklist, URL);
+            WriteURLtoFile(URL);
         }
   
         void checkURL (string& URL){
-            int array[sizeOfArr] = hashLoop(url);
+            int* hashResultsIndex = hashLoop(URL);
             for(int i = 0; i < sizeOfArr; i++){
-                int bitIndex = array[i];
+                int bitIndex = hashResultsIndex[i];
                 if(ptrToArr[bitIndex] == 0){
                     cout << "false";
                     break;
                 } 
             }
             
-            falsePositive(url, Blacklist);
+            // falsePositive(URL);
             
         }
 

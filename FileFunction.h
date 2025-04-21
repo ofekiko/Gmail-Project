@@ -3,5 +3,5 @@
 #include<fstream>
 
 using namespace std;
-void WriteURLtoFile(string* file, string& URL);
-void ReadLineFromFile(string* file, string& URL);
+void WriteURLtoFile(string& URL);
+void ReadLineFromFile(string& URL);

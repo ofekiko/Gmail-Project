@@ -9,7 +9,7 @@ using namespace std;
 
 class addFunctionCommand: public ICommand{
 public:
-    void execute(BloomFilter BF, string& url){};
+    void execute(){};
 };
 
 #endif

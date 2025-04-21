@@ -1,21 +1,24 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "FileFunction.h";
+#include "FileFunction.h"
+#include "Blacklist.txt"
 using namespace std;
 
-void WriteURLtoFile(string& file, string& URL) {
-    ofstream outputFile(file, ios::app);
+void WriteURLtoFile(string& URL) {
+    string blacklistFile = "Blacklist.txt";
+    ofstream outputFile(blacklistFile, ios::app);
     if (outputFile.is_open()) {
         outputFile << URL << endl;
         outputFile.close();
     } else {
-        cout << "Unable to open file for writing: " << file << endl;
+        cout << "Unable to open file for writing: " << blacklistFile << endl;
     }
 }
 
-string ReadLineFromFile(string& file, int index) {
-    ifstream inputFile(file);
+string ReadLineFromFile(int index) {
+    string blacklistFile = "Blacklist.txt";
+    ifstream inputFile(blacklistFile);
     string line = "";
     int currentLine = 0;
 
@@ -32,7 +35,7 @@ string ReadLineFromFile(string& file, int index) {
         cout << "Line index out of range: " << index << endl;
         return "";
     } else {
-        cout << "Unable to open file for reading: " << file << endl;
+        cout << "Unable to open file for reading: " << blacklistFile << endl;
         return "";
     }
 }

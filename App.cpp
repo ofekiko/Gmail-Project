@@ -11,7 +11,6 @@ void App::run() {
         getline(cin, input);
         stringstream ss(input);
         BloomFilter BF(input);
-        addFunctionCommand.setBF(BF);
         string token;
         int number;
         bool isValid = true;
