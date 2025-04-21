@@ -35,8 +35,13 @@ TEST(CheckIfBlacklisted,EmptyString){
     string URL = NULL;
     EXPECT_THROW(checkURL(arr,URL),exception);
 }
-TEST(CheckIfBlacklisted,EmptyString){
-
+TEST(CheckIfBlacklisted,checkIfSaved){
+    arr[0] = hashTablePtr;
+    arr[1] = bloomFilterPtr;
+    hashTablePtr = arrayHash;
+    bloomFilterPtr = arrayFilter;
+    string ex1 = "“www.example.com0";
+    EXPECT_EQ(checkURL(arr,ex1), true);
 }
 int main(){
 }
